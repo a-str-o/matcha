@@ -1,0 +1,48 @@
+https://blog.logrocket.com/nodejs-expressjs-postgresql-crud-rest-api-example/
+
+1: get the postgresql up and running
+     brew services start postgresql
+
+2:  psql postgres
+    psql -d postgres -U me
+
+3: First, we’ll create a role called me and give it a password of password. 
+    A role can function as a user or a group, so in this case, we’ll be using it as a user.
+        postgres=# CREATE ROLE me WITH LOGIN PASSWORD 'password';
+4: 
+
+
+api=>
+CREATE TABLE users (
+  ID SERIAL PRIMARY KEY,
+  firstname VARCHAR(30),
+  lastname VARCHAR(30),
+  username VARCHAR(30),
+  email VARCHAR(30),
+  gender VARCHAR(30),
+  age VARCHAR(3),
+  bio VARCHAR(300),
+  password VARCHAR(64),
+);
+
+INSERT INTO users (firstname, email)
+  VALUES ('younes', 'younes.elguer@gmail.com'), ('George', 'george@example.com');
+
+
+  POST
+
+Add a new user with the name Elaine and email elaine@example.com.
+
+curl --data "name=Elaine&email=elaine@example.com" 
+http://localhost:3000/users
+PUT
+
+Update the user with ID 1 to have the name Kramer and email kramer@example.com.
+
+curl -X PUT -d "name=Kramer" -d "email=kramer@example.com" 
+http://localhost:3000/users/1
+DELETE
+
+Delete the user with id 1.
+
+curl -X "DELETE" http://localhost:3000/users/1
